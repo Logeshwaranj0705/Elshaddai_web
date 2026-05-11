@@ -92,7 +92,7 @@ export default function WorkflowOrbit() {
         </div>
 
         <img
-          src="../assets/girl1.png"
+          src="/assets/girl1.png"
           alt="Professional Collection Executive"
           className="workflow-center-girl"
         />
