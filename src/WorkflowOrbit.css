@@ -1,0 +1,648 @@
+:root {
+  --workflow-accent-teal: #00c9a7;
+  --workflow-accent-blue: #1e6fff;
+  --workflow-text-main: #f0f4ff;
+  --workflow-text-muted: #a7b6d6;
+  --workflow-border: rgba(255, 255, 255, 0.12);
+}
+
+/* MAIN SECTION */
+
+.workflow-banner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  perspective: 1600px;
+  background: transparent;
+}
+
+.workflow-banner::before,
+.workflow-banner::after {
+  display: none;
+}
+
+/* HEADER */
+
+.workflow-header {
+  position: absolute;
+  top: clamp(18px, 4vh, 42px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  width: min(92vw, 900px);
+  text-align: center;
+  pointer-events: none;
+}
+
+.workflow-header span {
+  display: block;
+  margin-bottom: clamp(7px, 1.2vw, 12px);
+  color: var(--workflow-accent-teal);
+  font-size: clamp(0.6rem, 1vw, 0.82rem);
+  font-weight: 900;
+  letter-spacing: clamp(2.5px, 0.5vw, 6px);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.workflow-header h2 {
+  margin: 0;
+  color: var(--workflow-text-main);
+  font-size: clamp(1.85rem, 5vw, 5.1rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* PARTICLES REMOVED */
+
+.workflow-particles {
+  display: none;
+}
+
+.workflow-particle {
+  display: none;
+}
+
+/* SCENE */
+
+.workflow-scene {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+
+/* GLOW REMOVED */
+
+.workflow-center-glow {
+  display: none;
+}
+
+/* FLOOR RING */
+
+.workflow-floor-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 17%;
+  transform: translateX(-50%);
+  width: clamp(250px, 38vw, 540px);
+  height: clamp(62px, 8vw, 120px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 0 34px rgba(0, 201, 167, 0.1),
+    inset 0 0 18px rgba(30, 111, 255, 0.08);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ROTATING CARD RING */
+
+.workflow-slider {
+  position: absolute;
+  width: clamp(150px, 13vw, 220px);
+  height: clamp(190px, 16vw, 275px);
+  left: 50%;
+  top: 48%;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  animation: workflowRotateSlider 28s linear infinite;
+  z-index: 5;
+}
+
+.workflow-slider:hover {
+  animation-play-state: paused;
+}
+
+.workflow-item {
+  position: absolute;
+  inset: 0;
+  transform:
+    rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+    translateZ(clamp(240px, 31vw, 470px));
+  transform-style: preserve-3d;
+}
+
+/* CARD */
+
+.workflow-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(14px, 1.25vw, 22px);
+  border-radius: clamp(18px, 1.8vw, 26px);
+  text-align: left;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.105),
+    rgba(255, 255, 255, 0.035)
+  );
+  border: 1px solid var(--workflow-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 26px 72px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.workflow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(0, 201, 167, 0.14), transparent 36%),
+    linear-gradient(180deg, rgba(30, 111, 255, 0.06), transparent 40%);
+  pointer-events: none;
+}
+
+.workflow-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -140%;
+  width: 75%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent,
+    rgba(255, 255, 255, 0.16),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: workflowCardShine 5.5s ease-in-out infinite;
+}
+
+.workflow-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  border-color: rgba(0, 201, 167, 0.35);
+  box-shadow:
+    0 32px 88px rgba(0, 0, 0, 0.52),
+    0 0 24px rgba(0, 201, 167, 0.12);
+}
+
+.workflow-card-number {
+  width: clamp(32px, 3vw, 46px);
+  height: clamp(32px, 3vw, 46px);
+  margin-bottom: clamp(13px, 1.8vw, 22px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--workflow-accent-teal);
+  font-size: clamp(0.62rem, 0.8vw, 0.82rem);
+  font-weight: 900;
+  border: 1px solid rgba(0, 201, 167, 0.35);
+  background: rgba(0, 201, 167, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.workflow-card h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 clamp(8px, 1vw, 14px);
+  font-size: clamp(0.9rem, 1.05vw, 1.25rem);
+  line-height: 1.15;
+  color: var(--workflow-text-main);
+}
+
+.workflow-card p {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(0.68rem, 0.78vw, 0.88rem);
+  line-height: 1.55;
+  color: var(--workflow-text-muted);
+}
+
+/* CENTER GIRL */
+
+.workflow-center-girl {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  width: clamp(230px, 26vw, 390px);
+  max-height: 58vh;
+  object-fit: contain;
+  transform: translateX(-50%);
+  z-index: 4;
+  pointer-events: none;
+  animation: none;
+  filter:
+    drop-shadow(0 35px 55px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 24px rgba(0, 201, 167, 0.08));
+}
+
+/* ANIMATIONS */
+
+@keyframes workflowRotateSlider {
+  from {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotateY(360deg);
+  }
+}
+
+@keyframes workflowCardShine {
+  0% {
+    left: -140%;
+  }
+
+  35% {
+    left: 130%;
+  }
+
+  100% {
+    left: 130%;
+  }
+}
+
+/* LARGE LAPTOP */
+
+@media (max-width: 1400px) {
+  .workflow-slider {
+    width: 200px;
+    height: 252px;
+    top: 49%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(370px);
+  }
+
+  .workflow-center-girl {
+    width: 340px;
+    bottom: 18%;
+  }
+
+  .workflow-floor-ring {
+    bottom: 17%;
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+  .workflow-header {
+    top: 28px;
+  }
+
+  .workflow-header h2 {
+    font-size: clamp(2.15rem, 6.2vw, 4rem);
+  }
+
+  .workflow-slider {
+    width: 175px;
+    height: 225px;
+    top: 51%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(315px);
+  }
+
+  .workflow-card {
+    padding: 16px;
+  }
+
+  .workflow-card h3 {
+    font-size: 1rem;
+  }
+
+  .workflow-card p {
+    font-size: 0.72rem;
+    line-height: 1.48;
+  }
+
+  .workflow-center-girl {
+    width: min(310px, 40vw);
+    bottom: 17%;
+  }
+
+  .workflow-floor-ring {
+    bottom: 16%;
+  }
+}
+
+/* SMALL TABLET / LARGE MOBILE */
+
+@media (max-width: 880px) {
+  .workflow-banner,
+  .workflow-scene {
+    min-height: 100svh;
+  }
+
+  .workflow-header {
+    top: 22px;
+    width: 94vw;
+  }
+
+  .workflow-header span {
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .workflow-header h2 {
+    font-size: clamp(1.85rem, 8vw, 3.25rem);
+    line-height: 0.98;
+  }
+
+  .workflow-slider {
+    width: 150px;
+    height: 190px;
+    top: 53%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(245px);
+  }
+
+  .workflow-center-girl {
+    width: 260px;
+    bottom: 16%;
+    max-height: 52vh;
+  }
+
+  .workflow-floor-ring {
+    bottom: 15%;
+    width: 300px;
+    height: 78px;
+  }
+
+  .workflow-card {
+    padding: 13px;
+    border-radius: 18px;
+  }
+
+  .workflow-card-number {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+    font-size: 0.62rem;
+  }
+
+  .workflow-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 7px;
+  }
+
+  .workflow-card p {
+    font-size: 0.66rem;
+    line-height: 1.42;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .workflow-banner,
+  .workflow-scene {
+    min-height: 100svh;
+  }
+
+  .workflow-header {
+    top: 18px;
+  }
+
+  .workflow-header span {
+    font-size: 0.56rem;
+    letter-spacing: 2.4px;
+  }
+
+  .workflow-header h2 {
+    font-size: clamp(1.75rem, 9vw, 2.65rem);
+    line-height: 1;
+  }
+
+  .workflow-slider {
+    width: 138px;
+    height: 178px;
+    top: 53%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(215px);
+  }
+
+  .workflow-center-girl {
+    bottom: 16%;
+    width: 235px;
+    max-height: 50vh;
+  }
+
+  .workflow-card {
+    padding: 12px;
+    border-radius: 17px;
+  }
+
+  .workflow-card-number {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 0.58rem;
+  }
+
+  .workflow-card h3 {
+    font-size: 0.82rem;
+    line-height: 1.12;
+    margin-bottom: 6px;
+  }
+
+  .workflow-card p {
+    font-size: 0.6rem;
+    line-height: 1.36;
+  }
+
+  .workflow-floor-ring {
+    bottom: 15%;
+    width: 265px;
+    height: 68px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 420px) {
+  .workflow-slider {
+    width: 128px;
+    height: 168px;
+    top: 54%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(195px);
+  }
+
+  .workflow-center-girl {
+    bottom: 15.5%;
+    width: 220px;
+  }
+
+  .workflow-floor-ring {
+    bottom: 14.5%;
+  }
+
+  .workflow-card {
+    padding: 10px;
+  }
+
+  .workflow-card-number {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 8px;
+  }
+
+  .workflow-card h3 {
+    font-size: 0.76rem;
+  }
+
+  .workflow-card p {
+    font-size: 0.56rem;
+    line-height: 1.32;
+  }
+}
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 360px) {
+  .workflow-header h2 {
+    font-size: 1.58rem;
+  }
+
+  .workflow-slider {
+    width: 118px;
+    height: 158px;
+    top: 55%;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(178px);
+  }
+
+  .workflow-center-girl {
+    width: 200px;
+    bottom: 15%;
+  }
+
+  .workflow-floor-ring {
+    bottom: 14%;
+  }
+
+  .workflow-card p {
+    font-size: 0.52rem;
+  }
+}
+
+/* SHORT HEIGHT MOBILE */
+
+@media (max-height: 720px) and (max-width: 600px) {
+  .workflow-header {
+    top: 14px;
+  }
+
+  .workflow-header h2 {
+    font-size: 1.65rem;
+  }
+
+  .workflow-header span {
+    margin-bottom: 5px;
+  }
+
+  .workflow-slider {
+    top: 56%;
+    width: 116px;
+    height: 150px;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(178px);
+  }
+
+  .workflow-center-girl {
+    bottom: 14%;
+    width: 190px;
+  }
+
+  .workflow-floor-ring {
+    bottom: 13%;
+  }
+
+  .workflow-card {
+    padding: 9px;
+  }
+
+  .workflow-card-number {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 7px;
+  }
+
+  .workflow-card h3 {
+    font-size: 0.68rem;
+  }
+
+  .workflow-card p {
+    font-size: 0.49rem;
+    line-height: 1.28;
+  }
+}
+
+/* VERY TALL MOBILE */
+
+@media (max-width: 480px) and (min-height: 800px) {
+  .workflow-slider {
+    top: 51%;
+    width: 142px;
+    height: 182px;
+  }
+
+  .workflow-item {
+    transform:
+      rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(210px);
+  }
+
+  .workflow-center-girl {
+    bottom: 17%;
+    width: 238px;
+  }
+
+  .workflow-floor-ring {
+    bottom: 16%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-slider,
+  .workflow-card::after {
+    animation: none;
+  }
+}
